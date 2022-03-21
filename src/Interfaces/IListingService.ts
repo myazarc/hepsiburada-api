@@ -100,6 +100,52 @@ interface IUploadStockStatusResponse extends AxiosResponse {
   data: IUploadStockStatus;
 }
 
+//#region
+interface IGetProduct {
+  listingId: string;
+  uniqueIdentifier: string;
+  hepsiburadaSku: string;
+  merchantSku: string;
+  price: number;
+  availableStock: number;
+  dispatchTime: number;
+  cargoCompany1: string;
+  cargoCompany2: string;
+  cargoCompany3: string;
+  shippingAddressLabel: string;
+  shippingProfileName: string;
+  claimAddressLabel: string;
+  maximumPurchasableQuantity: number;
+  minimumPurchasableQuantity: number;
+  pricings: any[];
+  isSalable: boolean;
+  customizableProperties: any[];
+  deactivationReasons: any[];
+  isSuspended: boolean;
+  isLocked: boolean;
+  lockReasons: any[];
+  isFrozen: boolean;
+  commissionRate: number;
+  availableWarehouses: any[];
+  isFulfilledByHB: boolean;
+  priceIncreaseDisabled: boolean;
+  priceDecreaseDisabled: boolean;
+  stockDecreaseDisabled: boolean;
+}
+
+interface IGetProducts {
+  listings: IGetProduct[];
+  totalCount: number;
+  limit: number;
+  offset: number;
+}
+
+interface IGetProductsResponse extends AxiosResponse {
+  data: IGetProducts;
+}
+
+//#endregion
+
 export {
   IUploadInventoryRequest,
   IProduct,
@@ -111,4 +157,5 @@ export {
   IUploadInventoryStatusResponse,
   IUploadPriceStatusResponse,
   IUploadStockStatusResponse,
+  IGetProductsResponse,
 };

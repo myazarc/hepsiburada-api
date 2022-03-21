@@ -1,5 +1,6 @@
 import Base from "./Base";
 import {
+  IGetProductsResponse,
   IUploadInventoryRequest,
   IUploadInventoryResponse,
   IUploadInventoryStatusResponse,
@@ -20,6 +21,11 @@ class ListingService extends Base {
 
   public sendProducts(products: IUploadInventoryRequest): Promise<IUploadInventoryResponse> {
     return this.getInstance().post(`listings/merchantid/${this.MERCHANTID}/inventory-uploads`, products);
+  }
+
+  public getProducts(offset: number = 0, limit: number = 2000, salableListings: boolean | null = null): Promise<IGetProductsResponse> {
+    const qsa = `offset=${offset}&limit=${limit}${salableListings !== null ? "&salable-listings=" + salableListings : ""}`;
+    return this.getInstance().get(`listings/merchantid/${this.MERCHANTID}?${qsa}`);
   }
 
   public updatePrices(products: IUploadPriceRequest): Promise<IUploadPriceResponse> {
