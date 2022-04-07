@@ -11,7 +11,7 @@ import {
   IUploadStockResponse,
   IUploadStockStatusResponse,
 } from "../../Interfaces/IListingService";
-
+import o2x from "object-to-xml";
 class ListingService extends Base {
   constructor(userName: string, userPass: string, merchantId: string) {
     super(userName, userPass, merchantId);
@@ -20,7 +20,7 @@ class ListingService extends Base {
   }
 
   public sendProducts(products: IUploadInventoryRequest): Promise<IUploadInventoryResponse> {
-    return this.getInstance().post(`listings/merchantid/${this.MERCHANTID}/inventory-uploads`, products);
+    return this.getInstanceWithXml().post(`listings/merchantid/${this.MERCHANTID}/inventory-uploads`, this.createXML(products));
   }
 
   public getProducts(offset: number = 0, limit: number = 2000, salableListings: boolean | null = null): Promise<IGetProductsResponse> {
@@ -46,6 +46,15 @@ class ListingService extends Base {
 
   public stockStatus(id: string): Promise<IUploadStockStatusResponse> {
     return this.getInstance().get(`listings/merchantid/${this.MERCHANTID}/stock-uploads/id/${id}`);
+  }
+
+  private createXML(lists: any) {
+    const listing = {
+      listings: {
+        listing: lists,
+      },
+    };
+    return o2x(listing);
   }
 }
 

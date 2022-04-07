@@ -6,6 +6,7 @@ class Base {
   public APP_URL: string = null;
 
   protected instance: AxiosInstance = null;
+  protected instanceXML: AxiosInstance = null;
   constructor(public USER_NAME: string, public USER_PASS: string, public MERCHANTID: string) {}
 
   /**
@@ -34,6 +35,20 @@ class Base {
       });
     }
     return this.instance;
+  }
+
+  public getInstanceWithXml() {
+    if (this.instanceXML === null) {
+      this.instanceXML = axios.create({
+        baseURL: this.getUrl(),
+        headers: {
+          Authorization: `Basic ${Buffer.from(this.USER_NAME + ":" + this.USER_PASS).toString("base64")}`,
+          "Content-Type": "application/xml",
+          Accept: "application/json",
+        },
+      });
+    }
+    return this.instanceXML;
   }
 }
 
