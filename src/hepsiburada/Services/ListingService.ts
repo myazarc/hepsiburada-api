@@ -11,7 +11,7 @@ import {
   IUploadStockResponse,
   IUploadStockStatusResponse,
 } from "../../Interfaces/IListingService";
-import o2x from "object-to-xml";
+import { objectToXml } from "../utils";
 class ListingService extends Base {
   constructor(userName: string, userPass: string, merchantId: string) {
     super(userName, userPass, merchantId);
@@ -54,7 +54,7 @@ class ListingService extends Base {
         listing: lists,
       },
     };
-    return o2x(listing);
+    return objectToXml(listing);
   }
 }
 
