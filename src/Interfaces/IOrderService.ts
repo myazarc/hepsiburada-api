@@ -137,4 +137,27 @@ interface IGetOrdersResponse extends AxiosResponse {
 
 //#endregion
 
-export { IGetOrdersResponse, IGetOrdersQueryParams };
+//#region createPackage
+interface ILineItemRequests {
+  id: string;
+  quantity: string;
+  serialNumbers?: string[];
+}
+
+interface ICreatePackageRequest {
+  parcelQuantity: number;
+  deci?: number;
+  lineItemRequests: ILineItemRequests[];
+}
+
+interface ICreatePackageResult {
+  packageNumber: string;
+  barcode: string;
+}
+interface ICreatePackageResponse extends AxiosResponse {
+  data: ICreatePackageResult;
+}
+
+//#endregion
+
+export { IGetOrdersResponse, IGetOrdersQueryParams, ICreatePackageResponse, ICreatePackageRequest };

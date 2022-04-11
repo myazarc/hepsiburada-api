@@ -1,5 +1,5 @@
 import Base from "./Base";
-import { IGetOrdersQueryParams, IGetOrdersResponse } from "../../Interfaces/IOrderService";
+import { ICreatePackageRequest, ICreatePackageResponse, IGetOrdersQueryParams, IGetOrdersResponse } from "../../Interfaces/IOrderService";
 
 class OrderService extends Base {
   constructor(userName: string, userPass: string, merchantId: string) {
@@ -10,6 +10,10 @@ class OrderService extends Base {
 
   public getOrders(querySearch: IGetOrdersQueryParams): Promise<IGetOrdersResponse> {
     return this.getInstance().get(`orders/merchantid/${this.MERCHANTID}`, { params: querySearch });
+  }
+
+  public createPackage(request: ICreatePackageRequest): Promise<ICreatePackageResponse> {
+    return this.getInstance().post(`packages/merchantid/${this.MERCHANTID}`, request);
   }
 }
 
