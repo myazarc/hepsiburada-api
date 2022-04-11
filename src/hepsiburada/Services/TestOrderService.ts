@@ -1,4 +1,3 @@
-import { AxiosResponse } from "axios";
 import Base from "./Base";
 import { ICreateTestOrderRequest, ICreateTestOrderResponse } from "../../Interfaces/ITestOrderService";
 /**
