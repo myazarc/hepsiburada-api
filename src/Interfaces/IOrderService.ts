@@ -177,4 +177,13 @@ interface IGetChangableCargoCompaniesResponse extends AxiosResponse {
 
 //#endregion
 
-export { IGetOrdersResponse, IGetOrdersQueryParams, ICreatePackageResponse, ICreatePackageRequest, IGetChangableCargoCompaniesResponse };
+//#region changeCargoCompany
+
+interface IChangeCargoCompanyRequest {
+  CargoCompanyShortName: string;
+}
+
+interface IChangeCargoCompanyResponse extends AxiosResponse {}
+//#endregion
+
+export { IGetOrdersResponse, IGetOrdersQueryParams, ICreatePackageResponse, ICreatePackageRequest, IGetChangableCargoCompaniesResponse, IChangeCargoCompanyResponse, IChangeCargoCompanyRequest };

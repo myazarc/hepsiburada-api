@@ -1,5 +1,13 @@
 import Base from "./Base";
-import { ICreatePackageRequest, ICreatePackageResponse, IGetChangableCargoCompaniesResponse, IGetOrdersQueryParams, IGetOrdersResponse } from "../../Interfaces/IOrderService";
+import {
+  IChangeCargoCompanyRequest,
+  IChangeCargoCompanyResponse,
+  ICreatePackageRequest,
+  ICreatePackageResponse,
+  IGetChangableCargoCompaniesResponse,
+  IGetOrdersQueryParams,
+  IGetOrdersResponse,
+} from "../../Interfaces/IOrderService";
 
 class OrderService extends Base {
   constructor(userName: string, userPass: string, merchantId: string) {
@@ -18,6 +26,10 @@ class OrderService extends Base {
 
   public getChangableCargoCompanies(packageNumber: string): Promise<IGetChangableCargoCompaniesResponse> {
     return this.getInstance().get(`packages/merchantid/${this.MERCHANTID}/packagenumber/${packageNumber}/changablecargocompanies`);
+  }
+
+  public changeCargoCompany(packageNumber: string, request: IChangeCargoCompanyRequest): Promise<IChangeCargoCompanyResponse> {
+    return this.getInstance().put(`packages/merchantid/${this.MERCHANTID}/packagenumber/${packageNumber}/changecargocompany`, request);
   }
 }
 
