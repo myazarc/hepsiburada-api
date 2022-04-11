@@ -1,5 +1,5 @@
 import Base from "./Base";
-import { ICreatePackageRequest, ICreatePackageResponse, IGetOrdersQueryParams, IGetOrdersResponse } from "../../Interfaces/IOrderService";
+import { ICreatePackageRequest, ICreatePackageResponse, IGetChangableCargoCompaniesResponse, IGetOrdersQueryParams, IGetOrdersResponse } from "../../Interfaces/IOrderService";
 
 class OrderService extends Base {
   constructor(userName: string, userPass: string, merchantId: string) {
@@ -14,6 +14,10 @@ class OrderService extends Base {
 
   public createPackage(request: ICreatePackageRequest): Promise<ICreatePackageResponse> {
     return this.getInstance().post(`packages/merchantid/${this.MERCHANTID}`, request);
+  }
+
+  public getChangableCargoCompanies(packageNumber: string): Promise<IGetChangableCargoCompaniesResponse> {
+    return this.getInstance().get(`packages/merchantid/${this.MERCHANTID}/packagenumber/${packageNumber}/changablecargocompanies`);
   }
 }
 

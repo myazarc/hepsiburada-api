@@ -160,4 +160,21 @@ interface ICreatePackageResponse extends AxiosResponse {
 
 //#endregion
 
-export { IGetOrdersResponse, IGetOrdersQueryParams, ICreatePackageResponse, ICreatePackageRequest };
+//#region changablecargocompanies
+
+interface IGetChangableCargoCompanies {
+  Id: number;
+  Name: string;
+  ShortName: string;
+  LogoUrl: string;
+  IsActive: boolean;
+}
+
+interface IGetChangableCargoCompaniesResult extends Array<IGetChangableCargoCompanies> {}
+interface IGetChangableCargoCompaniesResponse extends AxiosResponse {
+  data: IGetChangableCargoCompaniesResult;
+}
+
+//#endregion
+
+export { IGetOrdersResponse, IGetOrdersQueryParams, ICreatePackageResponse, ICreatePackageRequest, IGetChangableCargoCompaniesResponse };
