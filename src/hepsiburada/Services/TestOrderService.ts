@@ -9,6 +9,7 @@ class TestOrderService extends Base {
     super(userName, userPass, merchantId);
     this.TEST_URL = "https://oms-stub-external-sit.hepsiburada.com/";
     this.APP_URL = "https://oms-stub-external-sit.hepsiburada.com/";
+    this.setTestAccount();
   }
 
   public createTestOrder(order: ICreateTestOrderRequest): Promise<ICreateTestOrderResponse> {
