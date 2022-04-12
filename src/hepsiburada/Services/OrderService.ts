@@ -7,6 +7,8 @@ import {
   IGetChangableCargoCompaniesResponse,
   IGetOrdersQueryParams,
   IGetOrdersResponse,
+  IGetPackagesQueryParams,
+  IGetPackagesResponse,
   IPackageableWithResponse,
 } from "../../Interfaces/IOrderService";
 
