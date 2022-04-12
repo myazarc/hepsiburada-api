@@ -146,6 +146,12 @@ interface IGetProductsResponse extends AxiosResponse {
 
 //#endregion
 
+//#region produt activate and deactivate
+interface IProductActivateResponse extends AxiosResponse {}
+
+interface IProductDeactivateResponse extends AxiosResponse {}
+//#endregion
+
 export {
   IUploadInventoryRequest,
   IProduct,
@@ -158,4 +164,6 @@ export {
   IUploadPriceStatusResponse,
   IUploadStockStatusResponse,
   IGetProductsResponse,
+  IProductActivateResponse,
+  IProductDeactivateResponse,
 };
