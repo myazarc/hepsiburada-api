@@ -7,6 +7,7 @@ import {
   IGetChangableCargoCompaniesResponse,
   IGetOrdersQueryParams,
   IGetOrdersResponse,
+  IPackageableWithResponse,
 } from "../../Interfaces/IOrderService";
 
 class OrderService extends Base {
@@ -16,8 +17,16 @@ class OrderService extends Base {
     this.APP_URL = "https://oms-external.hepsiburada.com/";
   }
 
-  public getOrders(querySearch: IGetOrdersQueryParams): Promise<IGetOrdersResponse> {
+  public getOrders(querySearch: IGetOrdersQueryParams = {}): Promise<IGetOrdersResponse> {
     return this.getInstance().get(`orders/merchantid/${this.MERCHANTID}`, { params: querySearch });
+  }
+
+  public getPackages(querySearch: IGetPackagesQueryParams = {}): Promise<IGetPackagesResponse> {
+    return this.getInstance().get(`packages/merchantid/${this.MERCHANTID}`, { params: querySearch });
+  }
+
+  public packageableWith(lineItemId: number | string): Promise<IPackageableWithResponse> {
+    return this.getInstance().get(`lineitems/merchantid/${this.MERCHANTID}/packageablewith/lineitemid/${lineItemId}`);
   }
 
   public createPackage(request: ICreatePackageRequest): Promise<ICreatePackageResponse> {

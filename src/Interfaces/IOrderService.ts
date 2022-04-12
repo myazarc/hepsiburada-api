@@ -186,4 +186,113 @@ interface IChangeCargoCompanyRequest {
 interface IChangeCargoCompanyResponse extends AxiosResponse {}
 //#endregion
 
-export { IGetOrdersResponse, IGetOrdersQueryParams, ICreatePackageResponse, ICreatePackageRequest, IGetChangableCargoCompaniesResponse, IChangeCargoCompanyResponse, IChangeCargoCompanyRequest };
+//#region PackageableWith
+interface ILineItems {
+  orderNumber: string;
+  lineItemId: string;
+  quantity: string;
+}
+interface IPackageableWithResult {
+  lineItems: ILineItems[];
+}
+
+interface IPackageableWithResponse extends AxiosResponse {
+  data: IPackageableWithResult;
+}
+
+//#endregion
+
+//#region getPackages
+
+interface IGetPackagesQueryParams {
+  offset?: number;
+  limit?: number;
+  timespan?: number;
+  begindate?: string;
+  enddate?: string;
+}
+
+interface IPackageItems {
+  [key: string]: any;
+  lineItemId: string;
+  listingId: string;
+  merchantId: string;
+  hbSku: string;
+  merchantSku: string;
+  quantity: number;
+  price: IPrice;
+  vat: number;
+  totalPrice: IPrice;
+  commission: IPrice;
+  commissionRate: number;
+  unitHBDiscount: IPrice;
+  totalHBDiscount: IPrice;
+  merchantUnitPrice: IPrice;
+  merchantTotalPrice: IPrice;
+  cargoPaymentInfo: any[];
+  properties: IProperties;
+  productName: string;
+  orderNumber: string;
+  orderDate: string;
+  deliveryType: string;
+  customerDelivery: string;
+  pickupTime: string | null;
+  gtip: string;
+  weight: number;
+  vatRate: number;
+  warehouse: IWarehouse;
+  deptorDifferenceAmount: number;
+  purchasePrice: IPrice;
+}
+
+interface IGetPackagesResult {
+  id: string;
+  status: OrderStatus;
+  customerId: string;
+  orderDate: string;
+  dueDate: string;
+  barcode: string;
+  packageNumber: string;
+  cargoCompany: string;
+  shippingAddressDetail: string;
+  recipientName: string;
+  shippingCountryCode: string;
+  shippingDistrict: string;
+  shippingTown: string;
+  shippingCity: string;
+  email: string;
+  phoneNumber: string;
+  companyName: string;
+  billingAddress: string;
+  billingCity: string;
+  billingTown: string;
+  billingDistrict: string;
+  billingPostalCode: string;
+  taxOffice: string;
+  taxNumber: string;
+  identityNo: string;
+  shippingTotalPrice: IPrice;
+  customsTotalPrice: IPrice;
+  totalPrice: IPrice;
+  items: IPackageItems[];
+  isCargoChangable: boolean;
+  customerName: string;
+}
+interface IGetPackagesResponse extends AxiosResponse {
+  data: IGetPackagesResult[];
+}
+
+//#endregion
+
+export {
+  IGetOrdersResponse,
+  IGetOrdersQueryParams,
+  ICreatePackageResponse,
+  ICreatePackageRequest,
+  IGetChangableCargoCompaniesResponse,
+  IChangeCargoCompanyResponse,
+  IChangeCargoCompanyRequest,
+  IPackageableWithResponse,
+  IGetPackagesQueryParams,
+  IGetPackagesResponse,
+};

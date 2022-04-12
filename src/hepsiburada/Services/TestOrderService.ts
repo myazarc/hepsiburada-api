@@ -12,13 +12,13 @@ class TestOrderService extends Base {
   }
 
   public createTestOrder(order: ICreateTestOrderRequest): Promise<ICreateTestOrderResponse> {
-    const orderRequest = order?.LineItems?.map((item) => {
+    order.LineItems = order?.LineItems?.map((item) => {
       return {
         ...item,
         MerchantId: this.MERCHANTID,
       };
     });
-    return this.getInstance().post(`orders/merchantid/${this.MERCHANTID}`, orderRequest);
+    return this.getInstance().post(`orders/merchantid/${this.MERCHANTID}`, order);
   }
 }
 
